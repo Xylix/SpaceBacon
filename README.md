@@ -1,2 +1,2 @@
 # SpaceBacon
-En ett virtual spela
+Jonkinlainen multiplayer avaruus-fysiikka-ammuntapeli

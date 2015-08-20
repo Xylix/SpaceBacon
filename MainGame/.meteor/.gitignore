@@ -1,1 +1,11 @@
+#Meteor autogenattu .GI osa. En usko että toi toimii.
 local
+
+#Database pitää ignore jos tekee tälläist. Koska meillä on clienttejä, meillä on db.
+*.db
+*.sqlite
+*.sqlite2
+*.sqlite3
+
+#.Json, koska conffit ei mieluusti siirry
+settings.json
