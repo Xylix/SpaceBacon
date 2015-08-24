@@ -1,7 +1,7 @@
-var player = {
-    name: "Nemo",
-    location: {x: 0, y: 0},
-    speed: {x: 0, y: 0},
-    acceleration: {x: 0, y: 0},
-    size: {width: 100, height: 100}
+player = function() {
+    this.name = "Nemo";
+    this.location = {x: 0, y: 0};
+    this.speed = {x: 0, y: 0};
+    this.acceleration = {x: 0, y: 0};
+    this.size = {width: 100, height: 100};
 }
