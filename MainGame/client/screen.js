@@ -16,10 +16,5 @@ $(document).ready(function(){
     Meteor.setTimeout(function() {
         //MAIN function
 
-
-
-
-
     },500);
-
 })
