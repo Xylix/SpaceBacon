@@ -1,0 +1,15 @@
+<html>
+    <head>
+        <title>PixelEditor Test</title>
+        <style>
+            body{
+                margin:0;
+            }
+        </style>
+        <script src="pixeleditor.js"></script>
+    </head>
+    <body onload="start()">
+        <canvas id="kuva" width="512" height="512" onmousedown="edit(event)"></canvas><br>
+        <button onclick="change()">Change color</button>
+    </body>
+</html>
