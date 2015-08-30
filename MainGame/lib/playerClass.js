@@ -24,3 +24,11 @@ checkPlayer = function(name) {
     if (plrs.findOne({name:name})) return true;
     else return false;
 }
+update = function(p){
+    p.speed["x"] += p.acceleration["x"];
+    p.speed["y"] += p.acceleration["y"];
+    p.location["x"] += p.speed["x"];
+    p.location["y"] += p.speed["y"];
+
+    plrs.update({_id:p._id}, {$set:p});
+}

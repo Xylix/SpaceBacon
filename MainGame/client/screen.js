@@ -6,7 +6,6 @@ $(document).ready(function(){
     h = document.getElementById("gamescreen").height;
 
     $(window).resize(function(){
-        console.log("wololo")
         document.getElementById("gamescreen").width = 0;
         document.getElementById("gamescreen").height = 0;
         document.getElementById("gamescreen").width = $(document).width();
@@ -39,6 +38,7 @@ $(document).ready(function(){
                 draw(cur.location,cur.size);
             }
             clientPlayer = getPlayer(Session.get("user"));
+            update(clientPlayer);
             camera.x = clientPlayer.location.x - w/2;
             camera.y = clientPlayer.location.y - h/2;
 
