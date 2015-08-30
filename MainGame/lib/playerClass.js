@@ -5,17 +5,7 @@ player = function(name) {
     this.location = {x: Math.floor(Math.random()*250), y: Math.floor(Math.random()*250)};
     this.speed = {x: 0, y: 0};
     this.acceleration = {x: 0, y: 0};
-    this.size = {width: 100, height: 100};
-}
-
-player.prototype.data = function(plr) {
-    var d = {}
-    d.name = plr.name;
-    d.location = plr.location;
-    d.speed = plr.speed;
-    d.acceleration = plr.acceleration
-    d.size = plr.size;
-    return d;
+    this.size = {width: 50, height: 50};
 }
 
 getPlayers = function() {

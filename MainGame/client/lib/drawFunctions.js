@@ -6,6 +6,6 @@ draw = function(location, size) {
     var x = location.x - size.width/2 - camera.x;
     var y = location.y - size.height/2 - camera.y;
     context.fillRect(x,y,size.width,size.height);
-    context.strokeRect(x,y,size.width,size.height);
+    context.strokeRect(x,y,size.width,size.height)
 
 }

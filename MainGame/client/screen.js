@@ -24,25 +24,26 @@ $(document).ready(function(){
         if(!playertest) {
             addPlayer(Session.get("user"));
         }
+        context = document.getElementById("gamescreen").getContext("2d");
+
+
+        Meteor.setInterval(function() {
+            //MAIN function
+
+            context.fillStyle="white";
+            context.fillRect(0,0,w,h);
+
+            var plrlist = getPlayers();
+            for(var i=0;i<plrlist.length;i++) {
+                var cur = plrlist[i];
+                draw(cur.location,cur.size);
+            }
+            clientPlayer = getPlayer(Session.get("user"));
+            camera.x = clientPlayer.location.x - w/2;
+            camera.y = clientPlayer.location.y - h/2;
+
+        },1000/60);
     },1000)
 
-    context = document.getElementById("gamescreen").getContext("2d");
 
-
-    Meteor.setInterval(function() {
-        //MAIN function
-
-        context.fillStyle="white";
-        context.fillRect(0,0,w,h);
-
-        var plrlist = getPlayers();
-        for(var i=0;i<plrlist.length;i++) {
-            var cur = plrlist[i];
-            draw(cur.location,cur.size);
-        }
-        clientPlayer = getPlayer(Session.get("user"));
-        camera.x = clientPlayer.location.x - w/2;
-        camera.y = clientPlayer.location.y - h/2;
-
-    },500);
 })
