@@ -1,17 +1,34 @@
 $(document).ready(function(){
-    document.getElementById("gamescreen").width = $(document).width();
-    document.getElementById("gamescreen").height = $(document).height();
+    var gamescreen = document.getElementById("gamescreen");
+    gamescreen.width = $(document).width();
+    gamescreen.height = $(document).height();
 
-    w = document.getElementById("gamescreen").width;
-    h = document.getElementById("gamescreen").height;
+    w = gamescreen.width;
+    h = gamescreen.height;
+
+    document.body.addEventListener("keydown", function(event){
+        var e = event["keyCode"];
+        console.log(e);
+        // 87 = w, 65 = a, 83 = s, 68 = d
+        if (e == 87){
+            clientPlayer.movedir["y"] = -1;
+        }else if (e == 83){
+            clientPlayer.movedir["y"] = 1;
+        }else if (e == 65){
+            clientPlayer.movedir["x"] = -1;
+        }else if (e == 86){
+            clientPlayer.movedir["x"] = 1;
+        }
+        console.log("")
+    });
 
     $(window).resize(function(){
-        document.getElementById("gamescreen").width = 0;
-        document.getElementById("gamescreen").height = 0;
-        document.getElementById("gamescreen").width = $(document).width();
-        document.getElementById("gamescreen").height = $(document).height();
-        w = document.getElementById("gamescreen").width;
-        h = document.getElementById("gamescreen").height;
+        gamescreen.width = 0;
+        gamescreen.height = 0;
+        gamescreen.width = $(document).width();
+        gamescreen.height = $(document).height();
+        w = gamescreen.width;
+        h = gamescreen.height;
     });
 
     Meteor.setTimeout(function(){
@@ -23,7 +40,7 @@ $(document).ready(function(){
         if(!playertest) {
             addPlayer(Session.get("user"));
         }
-        context = document.getElementById("gamescreen").getContext("2d");
+        context = gamescreen.getContext("2d");
 
 
         Meteor.setInterval(function() {
