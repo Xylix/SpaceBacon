@@ -16,10 +16,26 @@ $(document).ready(function(){
             clientPlayer.movedir["y"] = 1;
         }else if (e == 65){
             clientPlayer.movedir["x"] = -1;
-        }else if (e == 86){
+        }else if (e == 68){
             clientPlayer.movedir["x"] = 1;
         }
-        console.log("")
+        plrs.update({_id: clientPlayer._id}, {$set: {movedir: clientPlayer.movedir}});
+    });
+
+    document.body.addEventListener("keyup", function(event){
+        var e = event["keyCode"];
+        console.log(e);
+        // 87 = w, 65 = a, 83 = s, 68 = d
+        if (e == 87){
+            clientPlayer.movedir["y"] = 0;
+        }else if (e == 83){
+            clientPlayer.movedir["y"] = 0;
+        }else if (e == 65){
+            clientPlayer.movedir["x"] = 0;
+        }else if (e == 68){
+            clientPlayer.movedir["x"] = 0;
+        }
+        plrs.update({_id: clientPlayer._id}, {$set: {movedir: clientPlayer.movedir}});
     });
 
     $(window).resize(function(){
