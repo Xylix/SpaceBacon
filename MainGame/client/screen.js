@@ -65,15 +65,21 @@ $(document).ready(function(){
             context.fillStyle="white";
             context.fillRect(0,0,w,h);
 
+            var curMap = getMap();
+            for(var i=0;i<curMap.planetList.length;i++) {
+                var curPlanet = curMap.planetList[i];
+                drawPlanet(curPlanet);
+            }
+
             var plrlist = getPlayers();
             for(var i=0;i<plrlist.length;i++) {
                 var cur = plrlist[i];
-                draw(cur.location,cur.size);
+                drawPlayer(cur);
             }
-            clientPlayer = getPlayer(Session.get("user"));
-            update(clientPlayer);
-            camera.x = clientPlayer.location.x - w/2;
-            camera.y = clientPlayer.location.y - h/2;
+            cPlayer = getPlayer(Session.get("user"));
+            update(cPlayer);
+            camera.x = cPlayer.location.x - w/2;
+            camera.y = cPlayer.location.y - h/2;
 
         },1000/60);
     },1000)

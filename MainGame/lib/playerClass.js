@@ -58,7 +58,5 @@ update = function(p){
     p.location["x"] += p.speed["x"];
     p.location["y"] += p.speed["y"];
 
-    console.log(p.acceleration);
-    console.log(p.speed);
     plrs.update({_id: p._id}, {$set: {acceleration: p.acceleration, speed: p.speed, location: p.location}});
 }
