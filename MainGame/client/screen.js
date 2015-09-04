@@ -1,14 +1,20 @@
 $(document).ready(function(){
+    var inMenu = false;  //check if player is in menu and does not shoot if so
     var gamescreen = document.getElementById("gamescreen");
     gamescreen.width = $(document).width();
     gamescreen.height = $(document).height();
 
     w = gamescreen.width;
     h = gamescreen.height;
+    document.body.addEventListener("mousedown", function(event){
+        var point = {x: event.clientX + clientPlayer.location.x, y: event.clientY + clientPlayer.location.y};
+        if (!inMenu){
+            shoot(clientPlayer, point);
+        }
+    });
 
     document.body.addEventListener("keydown", function(event){
         var e = event["keyCode"];
-        console.log(e);
         // 87 = w, 65 = a, 83 = s, 68 = d
         if (e == 87){
             clientPlayer.movedir["y"] = -1;
@@ -24,7 +30,6 @@ $(document).ready(function(){
 
     document.body.addEventListener("keyup", function(event){
         var e = event["keyCode"];
-        console.log(e);
         // 87 = w, 65 = a, 83 = s, 68 = d
         if (e == 87){
             clientPlayer.movedir["y"] = 0;
