@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    var inMenu = false;  //check if player is in menu and does not shoot if so
+    var inMenu = false;  //check if player is in menu && does not shoot if so
     var gamescreen = document.getElementById("gamescreen");
     gamescreen.width = $(document).width();
     gamescreen.height = $(document).height();
@@ -16,14 +16,14 @@ $(document).ready(function(){
     document.body.addEventListener("keydown", function(event){
         var e = event["keyCode"];
         // 87 = w, 65 = a, 83 = s, 68 = d
-        if (e == 87){
-            clientPlayer.movedir["y"] = -1;
-        }else if (e == 83){
-            clientPlayer.movedir["y"] = 1;
-        }else if (e == 65){
-            clientPlayer.movedir["x"] = -1;
-        }else if (e == 68){
-            clientPlayer.movedir["x"] = 1;
+        if (e == 87 && clientPlayer.movedir["y"] >= 0){
+            clientPlayer.movedir["y"] -= 1;
+        }else if (e == 83 && clientPlayer.movedir["y"] <= 0){
+            clientPlayer.movedir["y"] += 1;
+        }else if (e == 65 && clientPlayer.movedir["x"] >= 0){
+            clientPlayer.movedir["x"] -= 1;
+        }else if (e == 68 && clientPlayer.movedir["x"] <= 0){
+            clientPlayer.movedir["x"] += 1;
         }
         plrs.update({_id: clientPlayer._id}, {$set: {movedir: clientPlayer.movedir}});
     });
@@ -31,14 +31,14 @@ $(document).ready(function(){
     document.body.addEventListener("keyup", function(event){
         var e = event["keyCode"];
         // 87 = w, 65 = a, 83 = s, 68 = d
-        if (e == 87){
-            clientPlayer.movedir["y"] = 0;
-        }else if (e == 83){
-            clientPlayer.movedir["y"] = 0;
-        }else if (e == 65){
-            clientPlayer.movedir["x"] = 0;
-        }else if (e == 68){
-            clientPlayer.movedir["x"] = 0;
+        if (e == 87 && clientPlayer.movedir["y"] <= 0){
+            clientPlayer.movedir["y"] += 1;
+        }else if (e == 83 && clientPlayer.movedir["y"] >= 0){
+            clientPlayer.movedir["y"] -= 1;
+        }else if (e == 65 && clientPlayer.movedir["x"] <= 0){
+            clientPlayer.movedir["x"] += 1;
+        }else if (e == 68 && clientPlayer.movedir["x"] >= 0){
+            clientPlayer.movedir["x"] -= 1;
         }
         plrs.update({_id: clientPlayer._id}, {$set: {movedir: clientPlayer.movedir}});
     });
@@ -66,16 +66,13 @@ $(document).ready(function(){
 
         Meteor.setInterval(function() {
             //MAIN function
-
             context.fillStyle="white";
             context.fillRect(0,0,w,h);
-
             var curMap = getMap();
             for(var i=0;i<curMap.planetList.length;i++) {
                 var curPlanet = curMap.planetList[i];
                 drawPlanet(curPlanet);
             }
-
             var plrlist = getPlayers();
             for(var i=0;i<plrlist.length;i++) {
                 var cur = plrlist[i];
