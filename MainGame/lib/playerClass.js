@@ -42,6 +42,10 @@ update = function(p){
     if(p.speed["y"] + p.acceleration["y"] < maxSpeed){
         p.speed["y"] += p.acceleration["y"];
     }
+
+    p.location["x"] += p.speed["x"];
+    p.location["y"] += p.speed["y"];
+
     if(Math.abs(p.speed["x"])){
         p.speed["x"] /= 1.1;
         if (Math.abs(p.speed["x"]) < 0.1){
@@ -59,4 +63,8 @@ update = function(p){
     p.location["y"] += p.speed["y"];
 
     plrs.update({_id: p._id}, {$set: {acceleration: p.acceleration, speed: p.speed, location: p.location}});
+}
+
+shoot = function(player, point){
+    console.log("Shot from " + String(player.location.x) + ", " + String(player.location.y) + " towards " + String(point.x) + ", " + String(point.y));
 }
