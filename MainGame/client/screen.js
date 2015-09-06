@@ -7,7 +7,7 @@ $(document).ready(function(){
     w = gamescreen.width;
     h = gamescreen.height;
     document.body.addEventListener("mousedown", function(event){
-        var point = {x: event.clientX + clientPlayer.location.x, y: event.clientY + clientPlayer.location.y};
+        var point = {x: event.clientX, y: event.clientY};
         if (!inMenu){
             shoot(clientPlayer, point);
         }
@@ -68,9 +68,6 @@ $(document).ready(function(){
             //MAIN function
             context.fillStyle="white";
             context.fillRect(0,0,w,h);
-            clientPlayer = getPlayer(Session.get("user"));
-            camera.x = clientPlayer.location.x - w/2;
-            camera.y = clientPlayer.location.y - h/2;
             var curMap = getMap();
             for(var i=0;i<curMap.planetList.length;i++) {
                 var curPlanet = curMap.planetList[i];
@@ -81,6 +78,10 @@ $(document).ready(function(){
                 var cur = plrlist[i];
                 drawPlayer(cur);
             }
+            clientPlayer = getPlayer(Session.get("user"));
+            update(clientPlayer);
+            camera.x = clientPlayer.location.x - w/2;
+            camera.y = clientPlayer.location.y - h/2;
 
         },1000/60);
     },1000)

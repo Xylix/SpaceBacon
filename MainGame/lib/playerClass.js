@@ -1,4 +1,5 @@
 plrs = new Meteor.Collection("plrs");
+projectiles = new Meteor.Collection("projectiles");
 var maxSpeed = 10;
 
 player = function(name) {
@@ -62,5 +63,8 @@ update = function(p){
 }
 
 shoot = function(player, point){
-    console.log("Shot from " + String(player.location.x) + ", " + String(player.location.y) + " towards " + String(point.x) + ", " + String(point.y));
+    console.log("angle is: " + String(Math.atan2(point.x, point.y)))
+    // projectiles.insert({
+    //     location: player.location,
+    // })
 }
