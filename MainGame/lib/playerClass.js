@@ -28,7 +28,7 @@ checkPlayer = function(name) {
 }
 
 update = function(p){
-    if (Math.sqrt(Math.pow(p.movedir["y"], 2) + Math.pow(p.movedir["x"], 2)) <=1){
+    if (p.movedir["x"]*p.movedir["y"] === 0){
         p.acceleration["x"] = p.movedir["x"]; // temp solution
         p.acceleration["y"] = p.movedir["y"];
     }else{
@@ -46,17 +46,13 @@ update = function(p){
     p.location["x"] += p.speed["x"];
     p.location["y"] += p.speed["y"];
 
-    if(Math.abs(p.speed["x"])){
-        p.speed["x"] /= 1.1;
-        if (Math.abs(p.speed["x"]) < 0.1){
-            p.speed["x"] = 0;
-        }
+    p.speed["x"] /= 1.1;
+    if (Math.abs(p.speed["x"]) < 0.1){
+        p.speed["x"] = 0;
     }
-    if(Math.abs(p.speed["y"])){
-        p.speed["y"] /= 1.1;
-        if (Math.abs(p.speed["y"]) < 0.1){
-            p.speed["y"] = 0;
-        }
+    p.speed["y"] /= 1.1;
+    if (Math.abs(p.speed["y"]) < 0.1){
+        p.speed["y"] = 0;
     }
 
     p.location["x"] += p.speed["x"];
