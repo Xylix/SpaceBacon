@@ -62,15 +62,16 @@ $(document).ready(function(){
             addPlayer(Session.get("user"));
         }
         context = gamescreen.getContext("2d");
-
+        getTextures();
+        context.translate(w/2,h/2);
 
         Meteor.setInterval(function() {
             //MAIN function
-            context.fillStyle="white";
-            context.fillRect(0,0,w,h);
+            context.fillStyle="black";
+            context.fillRect(-w/2,-h/2,w,h);
             clientPlayer = getPlayer(Session.get("user"));
-            camera.x = clientPlayer.location.x - w/2;
-            camera.y = clientPlayer.location.y - h/2;
+            camera.x = clientPlayer.location.x;
+            camera.y = clientPlayer.location.y;
             var curMap = getMap();
             for(var i=0;i<curMap.planetList.length;i++) {
                 var curPlanet = curMap.planetList[i];
